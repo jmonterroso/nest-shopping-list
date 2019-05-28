@@ -17,15 +17,13 @@ export class ShoppingListService extends MongooseService<IShoppingList> {
     .populate('items');
   }
   async addToList(id, item) {
-    const list = await this.findOneById(id);
+    const list = await this.shoppingListItem.findOneById(id);
     const product = await this.shoppingItemService.create(item);
     list.items.push(product);
     return await list.save();
 
   }
   async removeFromList(id, itemId) {
-    console.log(id, 'id '); // deleteinbuild
-    console.log(itemId, 'itemId '); // deleteinbuild
     const list = await this.shoppingListItem.findById(Types.ObjectId(id));
     const index = list.items.indexOf(itemId);
     if (index > -1) {
