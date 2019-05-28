@@ -11,7 +11,8 @@ import { ShoppingListService } from './shopping-list/shopping-list.service';
   // imports: [MongooseModule.forRoot('mongodb://ad:X3l4ju.mc@ds211558.mlab.com:11558/4geeks'), ShoppingListModule],
   imports: [
     ShoppingItemModule, ShoppingListModule,
-    MongooseModule.forRoot('mongodb://localhost/lista') ],
+    MongooseModule.forRoot('mongodb://ad:X3l4ju.mc@ds211558.mlab.com:11558/4geeks'),
+    ],
   controllers: [AppController],
   providers: [AppService],
 })
