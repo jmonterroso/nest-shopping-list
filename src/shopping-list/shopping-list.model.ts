@@ -6,4 +6,9 @@ export const ShoppingListSchema = new mongoose.Schema({
   deletedAt: {
     type: Date,
   },
+  total: {
+    type: Number,
+  },
 }, { timestamps: true });
+
+

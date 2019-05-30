@@ -16,20 +16,25 @@ export class ShoppingListService extends MongooseService<IShoppingList> {
   return await this.shoppingListItem.findOne({ _id: Types.ObjectId(id), deletedAt: null })
     .populate('items');
   }
+
+  calculateTotal(items) {
+    return items.reduce((sum, agg) => sum + agg.price, 0);
+  }
   async addToList(id, item) {
-    const list = await this.shoppingListItem.findById(id);
+    const list = await this.shoppingListItem.findById(id).populate('items', 'price');
     const product = await this.shoppingItemService.create(item);
     list.items.push(product);
+    list.total = this.calculateTotal(list.items);
     return await list.save();
 
   }
   async removeFromList(id, itemId) {
-    const list = await this.shoppingListItem.findById(Types.ObjectId(id));
-    const index = list.items.indexOf(itemId);
-    if (index > -1) {
-      list.items.splice(index, 1);
-    }
+    const list = await this.shoppingListItem.findByIdAndUpdate(Types.ObjectId(id), {
+      $pull: {items:  itemId},
+
+    }, {new: true}).populate('items', 'price');
     await this.shoppingItemService.removeById(Types.ObjectId(itemId));
+    list.total = this.calculateTotal(list.items);
     list.save();
     return list;
 

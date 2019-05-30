@@ -4,5 +4,5 @@ export interface IShoppingList extends Document {
   readonly _id?: string;
   readonly name?: string;
   readonly items?: [IShoppingItem];
-
+  readonly total?: number;
 }
