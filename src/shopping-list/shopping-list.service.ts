@@ -14,7 +14,7 @@ export class ShoppingListService extends MongooseService<IShoppingList> {
 
   async findOne(id) {
   return await this.shoppingListItem.findOne({ _id: Types.ObjectId(id), deletedAt: null })
-    .populate('items');
+    .populate({path: 'items', options: {sort: {updatedAt: -1}}});
   }
 
   calculateTotal(items) {

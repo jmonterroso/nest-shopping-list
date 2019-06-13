@@ -11,7 +11,7 @@ export class ShoppingListController {
 
   @Get()
   async findAll(args): Promise<any> {
-    return await this.shoppingListService.paginate({...args}).toPromise();
+    return await this.shoppingListService.findAll();
   }
 
   @Get(':id')

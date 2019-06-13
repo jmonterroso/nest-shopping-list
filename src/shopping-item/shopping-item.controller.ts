@@ -10,7 +10,7 @@ export class ShoppingItemController {
 
   @Get()
   async findAll(args): Promise<any> {
-    return await this.shoppingItemService.paginate({...args}).toPromise();
+    return await this.shoppingItemService.findAll();
   }
 
   @Post()

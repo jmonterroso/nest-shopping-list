@@ -100,5 +100,9 @@ export class MongooseService<D> {
 
   }
 
+  public findAll(): Promise<D> {
+    return this.model.find({deletedAt: null}).sort({updatedAt: -1}).exec();
+  }
+
   constructor(private model) {}
 }
