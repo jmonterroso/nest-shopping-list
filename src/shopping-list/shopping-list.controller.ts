@@ -16,8 +16,7 @@ export class ShoppingListController {
 
   @Get(':id')
   async findById(@Param('id')id: string): Promise<any> {
-    return this.shoppingListService.findOne(id) ;
-    return await this.shoppingListService.findOneById(id);
+    return await this.shoppingListService.findOne(id) ;
   }
 
   @Post()
@@ -39,9 +38,18 @@ export class ShoppingListController {
   async addToList(@Param('id')id: string, @Body() item: IShoppingItem) {
     return await this.shoppingListService.addToList(id, item);
   }
+
   @Delete(':id/item/:itemId')
   async removeFromList(@Param('id') id: string, @Param('itemId') itemId: string) {
     return await this.shoppingListService.removeFromList(id, itemId);
+  }
+
+  @Put(':id/item/:itemId')
+  async updateFromList(@Param('id') id: string, @Param('itemId') itemId: string, @Body() item: IShoppingItem) {
+    console.log(id, 'id '); //deleteinbuild
+    console.log(itemId, 'id '); //deleteinbuild
+    console.log(item, 'id '); //deleteinbuild
+    return await this.shoppingListService.updateItemFromList(id, itemId, item);
   }
 
 }

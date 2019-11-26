@@ -1,5 +1,7 @@
 export interface IShoppingItem extends Document {
-  readonly _id?: string;
-  readonly name?:string;
-  readonly price?: number;
+  _id?: string;
+  name?: string;
+  qty?: number;
+  unitPrice?: number;
+  price?: number;
 }

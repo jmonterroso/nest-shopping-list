@@ -13,14 +13,22 @@ export class ShoppingItemController {
     return await this.shoppingItemService.findAll();
   }
 
+  @Get(':id')
+  async findById(@Param('id')id: string): Promise<any> {
+    return await this.shoppingItemService.findOneById(id);
+  }
+
   @Post()
   async create(@Body() item: IShoppingItem): Promise<IShoppingItem> {
+    item.price = item.unitPrice * item.qty;
     return await this.shoppingItemService.create(item);
   }
 
   @Put(':id')
   async update(@Param('id')id: string, @Body() item: IShoppingItem): Promise<IShoppingItem> {
-    return await this.shoppingItemService.update(id, item);
+    item.price = item.unitPrice * item.qty;
+    console.log(item, 'item '); //deleteinbuild
+    return this.shoppingItemService.update(id, item);
   }
 
   @Delete(':id')
