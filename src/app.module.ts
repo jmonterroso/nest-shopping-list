@@ -13,7 +13,7 @@ import * as path from 'path';
   imports: [
     ConfigModule.load(path.resolve(__dirname, 'config', '**/!(*.d).{ts,js}')),
     ShoppingItemModule, ShoppingListModule,
-    MongooseModule.forRoot('mongodb+srv://shopping_list_db:X3l4ju.mc1234@4geeks.qssff.mongodb.net/<dbname>?retryWrites=true&w=majority'),
+    MongooseModule.forRoot('mongodb+srv://shopping_list_db:X3l4ju.mc1234@4geeks.qssff.mongodb.net/4geeks?retryWrites=true&w=majority'),
     // MongooseModule.forRoot('mongodb://localhost/lista'),
   ],
   controllers: [AppController],
